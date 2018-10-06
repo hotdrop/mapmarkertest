@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MapMarkerTest</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="image_description">マップ上のイメージ画像です。</string>
+
+    <string name="button_label_custom_content">InfoWindowの中身をカスタム</string>
+    <string name="button_label_custom_window">InfoWindowの枠ごとカスタム</string>
+    <string name="button_label_custom_window_with_layout">InfoWindowの枠ごとカスタム＋吹き出し表示</string>
+</resources>
