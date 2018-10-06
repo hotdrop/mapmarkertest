@@ -1,4 +1,4 @@
-package hotdrop.jp.mapmarkertest
+package jp.hotdrop.mapmarkertest
 
 import android.content.Context
 import android.content.Intent
@@ -11,8 +11,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import hotdrop.jp.mapmarkertest.databinding.ActivityMapsBinding
-import hotdrop.jp.mapmarkertest.repository.PlaceRepository
+import jp.hotdrop.mapmarkertest.adapter.Type
+import jp.hotdrop.mapmarkertest.databinding.ActivityMapsBinding
+import jp.hotdrop.mapmarkertest.repository.PlaceRepository
 
 class MapsActivity: AppCompatActivity() {
 
@@ -20,13 +21,17 @@ class MapsActivity: AppCompatActivity() {
     private lateinit var mMap: GoogleMap
     private var clusterMarkers: MapClusterMarkers? = null
     private val repository = PlaceRepository()
+    private val adapterType by lazy { intent.getSerializableExtra(EXTRA_TAG) as Type }
 
     companion object {
+        private val EXTRA_TAG = MapsActivity::class.java.simpleName
         private const val defaultZoomLevel = 15f
         // 東京駅の緯度軽度を初期位置
         private val DEFAULT_LOCATION = LatLng(35.681167, 139.767052)
-        fun start(context: Context) =
-                context.startActivity(Intent(context, MapsActivity::class.java))
+        fun start(context: Context, type: Type) =
+                context.startActivity(Intent(context, MapsActivity::class.java).apply {
+                    putExtra(EXTRA_TAG, type)
+                })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +58,7 @@ class MapsActivity: AppCompatActivity() {
                 // 地図表示するデータ読み込む
                 val places = repository.findAll(this)
 
-                clusterMarkers = MapClusterMarkers(this, mMap) {
+                clusterMarkers = MapClusterMarkers(this, mMap, adapterType) {
                     Toast.makeText(this, "マーカーをタップしました。", Toast.LENGTH_SHORT).show()
                 }.apply {
                     this.showOnMap(places)

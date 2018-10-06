@@ -1,23 +1,27 @@
-package hotdrop.jp.mapmarkertest
+package jp.hotdrop.mapmarkertest
 
 import android.content.Context
 import com.google.android.gms.maps.GoogleMap
 import com.google.maps.android.clustering.ClusterManager
-import hotdrop.jp.mapmarkertest.adapter.CustomInfoWindowAdapter
-import hotdrop.jp.mapmarkertest.model.MyClusterItem
-import hotdrop.jp.mapmarkertest.model.Place
+import jp.hotdrop.mapmarkertest.adapter.AdapterFactory
+import jp.hotdrop.mapmarkertest.adapter.Type
+import jp.hotdrop.mapmarkertest.model.MyClusterItem
+import jp.hotdrop.mapmarkertest.model.Place
 
 class MapClusterMarkers constructor(
         private val context: Context,
         private var map: GoogleMap,
+        adapterType: Type,
         tapEvent: ((place: Place) -> Unit)? = null
 ) {
 
     private var clusterManager: ClusterManager<MyClusterItem>? = null
-    private val adapter: CustomInfoWindowAdapter =
-            CustomInfoWindowAdapter(context,
-                    context.resources.getDimension(R.dimen.image_width).toInt(),
-                    context.resources.getDimension(R.dimen.image_height).toInt())
+    private val adapter = AdapterFactory.create(
+            context,
+            adapterType,
+            context.resources.getDimension(R.dimen.image_width).toInt(),
+            context.resources.getDimension(R.dimen.image_height).toInt()
+    )
 
     init {
         initClusterManager(map, tapEvent)

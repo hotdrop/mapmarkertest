@@ -1,11 +1,11 @@
-package hotdrop.jp.mapmarkertest.repository
+package jp.hotdrop.mapmarkertest.repository
 
 import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import hotdrop.jp.mapmarkertest.R
-import hotdrop.jp.mapmarkertest.model.Place
+import jp.hotdrop.mapmarkertest.R
+import jp.hotdrop.mapmarkertest.model.Place
 
 class PlaceRepository {
 

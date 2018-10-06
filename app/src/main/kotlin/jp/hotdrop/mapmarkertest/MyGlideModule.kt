@@ -1,4 +1,4 @@
-package hotdrop.jp.mapmarkertest
+package jp.hotdrop.mapmarkertest
 
 import android.content.Context
 import com.bumptech.glide.Glide

@@ -1,4 +1,4 @@
-package hotdrop.jp.mapmarkertest.adapter
+package jp.hotdrop.mapmarkertest.adapter
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -8,21 +8,20 @@ import android.view.View
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
-import hotdrop.jp.mapmarkertest.GlideApp
-import hotdrop.jp.mapmarkertest.databinding.CustomInfoWindowBinding
-import hotdrop.jp.mapmarkertest.model.MyClusterItem
+import jp.hotdrop.mapmarkertest.GlideApp
+import jp.hotdrop.mapmarkertest.databinding.CustomInfoWindowBinding
+import jp.hotdrop.mapmarkertest.model.MyClusterItem
 
-class CustomInfoAdapter constructor(
+class CustomInfoContentsAdapter constructor(
         private val context: Context,
         private val imageWidth: Int,
         private val imageHeight: Int
-): GoogleMap.InfoWindowAdapter {
+): CustomAdapter {
 
     private val thumbnails = HashMap<Marker, Bitmap>()
     private val targets = HashMap<Marker, Target<Bitmap>>()
-    var selectedItem: MyClusterItem? = null
+    override var selectedItem: MyClusterItem? = null
 
     /**
      * 中身のコンテンツをカスタムする場合、getInfoContentsを実装してgetInfoWindowはnullを返す。

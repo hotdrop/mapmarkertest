@@ -1,4 +1,4 @@
-package hotdrop.jp.mapmarkertest.model
+package jp.hotdrop.mapmarkertest.model
 
 import com.google.android.gms.maps.model.LatLng
 
