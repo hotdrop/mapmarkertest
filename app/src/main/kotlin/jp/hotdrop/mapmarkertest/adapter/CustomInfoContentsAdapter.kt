@@ -10,7 +10,7 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.gms.maps.model.Marker
 import jp.hotdrop.mapmarkertest.GlideApp
-import jp.hotdrop.mapmarkertest.databinding.CustomInfoWindowBinding
+import jp.hotdrop.mapmarkertest.databinding.CustomInfoContentsBinding
 import jp.hotdrop.mapmarkertest.model.MyClusterItem
 
 class CustomInfoContentsAdapter constructor(
@@ -27,7 +27,7 @@ class CustomInfoContentsAdapter constructor(
      * 中身のコンテンツをカスタムする場合、getInfoContentsを実装してgetInfoWindowはnullを返す。
      */
     override fun getInfoContents(p0: Marker?): View? {
-        val binding = CustomInfoWindowBinding.inflate(LayoutInflater.from(context))
+        val binding = CustomInfoContentsBinding.inflate(LayoutInflater.from(context))
 
         p0 ?: return null
         val place = selectedItem?.place ?: return null
