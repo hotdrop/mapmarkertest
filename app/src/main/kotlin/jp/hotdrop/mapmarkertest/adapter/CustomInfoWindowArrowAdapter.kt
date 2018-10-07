@@ -3,7 +3,6 @@ package jp.hotdrop.mapmarkertest.adapter
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.request.target.SimpleTarget
@@ -43,8 +42,6 @@ class CustomInfoWindowArrowAdapter constructor(
 
         val image = thumbnails[p0]
         if (image == null) {
-            Log.d("DEBUG", "imageがnullです。")
-            // イメージが未取得の場合はGlide経由でイメージを取得してメモリに保持しレンダリングはしないのでnullを返す
             val target = targets[p0] ?: ClusterItemTarget(p0).apply { targets[p0] = this }
             GlideApp.with(context)
                     .asBitmap()
@@ -54,7 +51,6 @@ class CustomInfoWindowArrowAdapter constructor(
             return null
         }
 
-        Log.d("DEBUG", "imageがキャッシュにあります。")
         binding.imageView.setImageBitmap(image)
         binding.title.text = place.title
         binding.memo.text = place.memo
@@ -69,7 +65,6 @@ class CustomInfoWindowArrowAdapter constructor(
             thumbnails.remove(marker)
         }
         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-            // リソースが取得できたら再度showInfoWindowを呼ぶ。getInfoContentsが呼ばれるので今度はimageがnullでなくなる。
             thumbnails[marker] = resource
             marker.showInfoWindow()
         }

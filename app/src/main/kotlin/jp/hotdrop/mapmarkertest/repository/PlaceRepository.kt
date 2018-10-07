@@ -9,17 +9,10 @@ import jp.hotdrop.mapmarkertest.model.Place
 
 class PlaceRepository {
 
-    // サンプルでは面倒なのでDagger2導入していないがほんとはcontextはDIすべき
     fun findAll(context: Context) = loadData(context)
 
     /**
-     * ここで読み込むplacedata.jsonは別途用意してください。
-     * こんな感じで作っています。
-     *  [
-     *     {"title": "テスト1", "imageUrl":"XXX", "memo":"東京駅の右のほうです。",  "latitude": 35.683040, "longitude": 139.770254},
-     *     {"title": "テスト2", "imageUrl":"XXX", "memo":"美術館の近くです。東京駅の左のほう。",  "latitude": 35.678194, "longitude": 139.763930},
-     *     {"title": "テスト3", "imageUrl":"XXX", "memo":"東京駅の上の方の道です。",  "latitude": 35.685327, "longitude": 139.766804}
-     *  ]
+     * ここで読み込むplacedata.jsonは別途用意してください。形式はREADMEを参照。
      */
     private fun loadData(context: Context): List<Place> {
         val rawJson = context.resources.openRawResource(R.raw.placedata).bufferedReader().readText()

@@ -42,7 +42,6 @@ class CustomInfoWindowAdapter constructor(
 
         val image = thumbnails[p0]
         if (image == null) {
-            // イメージが未取得の場合はGlide経由でイメージを取得してメモリに保持しレンダリングはしないのでnullを返す
             val target = targets[p0] ?: ClusterItemTarget(p0).apply { targets[p0] = this }
             GlideApp.with(context)
                     .asBitmap()
@@ -66,7 +65,6 @@ class CustomInfoWindowAdapter constructor(
             thumbnails.remove(marker)
         }
         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-            // リソースが取得できたら再度showInfoWindowを呼ぶ。getInfoContentsが呼ばれるので今度はimageがnullでなくなる。
             thumbnails[marker] = resource
             marker.showInfoWindow()
         }

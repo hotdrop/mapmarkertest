@@ -40,7 +40,7 @@ class MapClusterMarkers constructor(
             manager.markerCollection.setOnInfoWindowAdapter(adapter)
             // Map上に設置するMarkerのInfoWindowを作るため、タップしたplace(ClusterItemのフィールドで持っている)の情報が必要。
             // でもInfoWindowAdapterのoverrideメソッドたちは引数がMarkerなのでplaceを取ることができない。
-            // そのため、仕方ないのでタップした時にclusterItemを保持しております・・・
+            // そのため、仕方ないのでタップした時にclusterItemをadapterに渡しています。
             manager.setOnClusterItemClickListener { item ->
                 adapter.selectedItem = item
                 false
